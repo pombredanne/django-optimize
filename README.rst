@@ -52,7 +52,7 @@ This is the same as
 
     Animal.objects.filter(name__icontains='foo').update(name='bar')
 
-but makes it 1000 by 1000 as default. You can let it make it, let's say 5000:
+but makes it 1000 by 1000 as default. You can set the size by:
 
 ::
 
