@@ -1,7 +1,6 @@
 from django.db.models.query import QuerySet
 from django.db import models
-
-from cosmos.libs.utils import grouper
+from optimize.helpers import grouper
 
 
 class OptimizeQuerySet(QuerySet):
