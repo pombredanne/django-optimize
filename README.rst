@@ -33,7 +33,9 @@ The query above is the same as:
 
 ::
 
-    Animal.objects.only('name', 'kingdom__name', 'relatives__kingdom__name').select_related('kingdom').prefetch_related('relatives_set__kingdom')
+    Animal.objects.only('name', 'kingdom__name', 'relatives__kingdom__name')\
+        .select_related('kingdom')\
+        .prefetch_related('relatives_set__kingdom')
 
 
 chunkdate
