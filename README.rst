@@ -33,7 +33,10 @@ The query above is the same as:
 
 ::
 
-    Animal.objects.only('name', 'kingdom__name', 'relatives__kingdom__name')\
+    Animal.objects.only('pk', 'name', 'kingdom_id',
+                        'kingdom__name',
+                        'relatives__kingdom_id',
+                        'relatives__kingdom__name')\
         .select_related('kingdom')\
         .prefetch_related('relatives_set__kingdom')
 
