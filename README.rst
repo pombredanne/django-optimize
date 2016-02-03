@@ -1,11 +1,10 @@
 django-optimize
 ===============
 
+django-optimize helps making query optimization easily.
+
 Usage
 ------------
-
-
-Optimize helps making query optimization easily.
 
 ::
 
