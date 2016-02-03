@@ -14,7 +14,8 @@ Usage
         name = models.CharField(max_length=75)
         scientific_name = models.CharField(max_length=75)
         kingdom = models.ForeignKey(SomeOtherTable)
-        relatives = models.ManyToManyField(YetAnotherTable)
+        relatives = models.ManyToManyField(
+            YetAnotherTable, through='relatives')
 
         objects = OptimizeManager
 
@@ -38,7 +39,7 @@ The query above is the same as:
                         'relatives__kingdom_id',
                         'relatives__kingdom__name')\
         .select_related('kingdom')\
-        .prefetch_related('relatives_set__kingdom')
+        .prefetch_related('relatives__kingdom')
 
 
 chunkdate
