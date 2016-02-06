@@ -1,11 +1,10 @@
 django-optimize
 ===============
 
+django-optimize helps making query optimization easily.
+
 Usage
 ------------
-
-
-Optimize helps making query optimization easily.
 
 ::
 
@@ -15,7 +14,8 @@ Optimize helps making query optimization easily.
         name = models.CharField(max_length=75)
         scientific_name = models.CharField(max_length=75)
         kingdom = models.ForeignKey(SomeOtherTable)
-        relatives = models.ManyToManyField(YetAnotherTable)
+        relatives = models.ManyToManyField(
+            YetAnotherTable, through='relatives')
 
         objects = OptimizeManager
 
@@ -34,7 +34,12 @@ The query above is the same as:
 
 ::
 
-    Animal.objects.only('name', 'kingdom__name', 'relatives__kingdom__name').select_related('kingdom').prefetch_related('relatives_set__kingdom')
+    Animal.objects.only('pk', 'name', 'kingdom_id',
+                        'kingdom__name',
+                        'relatives__kingdom_id',
+                        'relatives__kingdom__name')\
+        .select_related('kingdom')\
+        .prefetch_related('relatives__kingdom')
 
 
 chunkdate
@@ -52,7 +57,7 @@ This is the same as
 
     Animal.objects.filter(name__icontains='foo').update(name='bar')
 
-but makes it 1000 by 1000 as default. You can let it make it, let's say 5000:
+but makes it 1000 by 1000 as default. You can set the size by:
 
 ::
 
