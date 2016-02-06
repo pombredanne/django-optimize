@@ -4,11 +4,11 @@ from optimize.helpers import grouper
 
 
 class OptimizeQuerySet(QuerySet):
-    def chunkdate(self, *args, **kwargs):
+    def chunk_update(self, *args, **kwargs):
         """
         usage:
-            chunkdate(field=new_value)
-            chunkdate(2000, field=new_value)
+            chunk_update(field=new_value)
+            chunk_update(2000, field=new_value)
         """
         size = 1000
         if len(args):
